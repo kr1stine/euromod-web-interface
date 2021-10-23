@@ -19,4 +19,4 @@ hh <-
 
 save(results, file = "data-raw/results.rda")
 
-save(results, file = "data-raw/hh.rda")
+save(hh, file = "data-raw/hh.rda")
