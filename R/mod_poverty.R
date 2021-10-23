@@ -76,8 +76,10 @@ mod_poverty_server <- function(id, i18n, results){
       dataframe <- results()$household
       i18n <- i18n()
       dataframe <-
-        dataframe %>% dplyr::mutate(household := i18n$t(household), scenario := i18n$t(scenario))
-      names(dataframe) <- c("year", "min wage", "household", "scenario", "abs_poverty", "rel_poverty")
+        dataframe %>% 
+          dplyr::mutate(household := i18n$t(household), scenario := i18n$t(scenario)) %>%
+          dplyr::rename("abs_poverty" = "absolute poverty", "rel_poverty" = "relative poverty")
+          # newggslopegraph does not like chr vector names
       dataframe
     })
     
