@@ -5,10 +5,10 @@ account: oluwandabira
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4791802
-bundleId: 5170649
+bundleId: 5170718
 url: https://oluwandabira.shinyapps.io/euromod-web-interface/
-when: 1635024707.91227
-lastSyncTime: 1635024707.91227
+when: 1635029056.37104
+lastSyncTime: 1635029056.37104
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .github/workflows/pr-commands.yaml|.github/workflows/R-CMD-check.yaml|tests/spelling.R|tests/testthat/test-ComputedProvider.R|tests/testthat/test-golem-recommended.R|tests/testthat.R|data-raw
