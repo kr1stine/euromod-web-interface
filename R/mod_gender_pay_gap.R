@@ -47,7 +47,7 @@ mod_gender_pay_gap_server <- function(id, i18n, results){
     mod_metric_change_server(
       "pay_gap",
       reactive(results()$original$"gender pay gap"),
-      reactive(results()$computed$"new pay gap"),
+      reactive(results()$computed$"new pay gap")
     )
 
     mod_metric_change_server(

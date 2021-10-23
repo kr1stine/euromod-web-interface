@@ -15,7 +15,7 @@ mod_metric_change_ui <- function(id, title, description) {
       4,
       align = "center",
       mod_metric_ui(ns("old")),
-      down_arrow(),
+      uiOutput(ns("arrow")),
       mod_metric_ui(ns("new"))
     )
   )
@@ -33,11 +33,26 @@ mod_metric_change_server <-
   function(id,
            old_value,
            new_value,
+           more_is_positive = FALSE,
            desc_tt = NULL,
            old_tt = NULL,
            new_tt = NULL) {
     moduleServer(id, function(input, output, session) {
       ns <- session$ns
+      
+      output$arrow <- renderUI({
+        nv <- new_value()
+        ov <- old_value()
+        
+        color = if (nv > ov && more_is_positive || nv < ov && !more_is_positive)
+            "rgb(0,166,90)"
+          else if (nv == ov)
+            "black"
+          else
+            "red"
+        
+        tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
+      })
       
       mod_metric_description_server("decription", desc_tt)
       
