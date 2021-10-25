@@ -11,14 +11,24 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(i18n),
     fluidPage(
-      uiOutput("title"),
-      column(2, offset = 10, selectInput(
-        "selector",
-        label = NULL,
-        choices = list("Eesti keel" = "ee",
-                       "In English" = "en"),
-        selected = i18n$get_key_translation()
-      )),
+      titlePanel(
+        i18n$t("Miinimumpalga tõusu mõju palgalõhele"),
+        # Translated window title in server
+        "Miinimumpalga tõusu mõju palgalõhele" 
+      ),
+      # Fake tooltip so shinyBS server functions work
+      shinyBS::bsTooltip("tt", "tt"), 
+      column(
+        2,
+        offset = 10,
+        selectInput(
+          "selector",
+          label = NULL,
+          choices = list("Eesti keel" = "ee",
+                         "In English" = "en"),
+          selected = i18n$get_key_translation()
+        )
+      ),
       sidebarLayout(
         sidebarPanel(mod_input_panel_ui("main_input", i18n)),
         mainPanel(mod_output_panel_ui("main_output", i18n))
@@ -39,6 +49,11 @@ golem_add_external_resources <- function(i18n){
   
   add_resource_path(
     'www', app_sys('app/www')
+  )
+  
+  # shinyBS attach workaround from https://github.com/ThinkR-open/golem/issues/297
+  add_resource_path(
+    "sbs", system.file("www", package = "shinyBS")
   )
 
   tags$head(

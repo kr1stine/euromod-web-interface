@@ -47,19 +47,28 @@ mod_gender_pay_gap_server <- function(id, i18n, results){
     mod_metric_change_server(
       "pay_gap",
       reactive(results()$original$"gender pay gap"),
-      reactive(results()$computed$"new pay gap")
+      reactive(results()$computed$"new pay gap"),
+      desc_tt = reactive(i18n()$t(
+        "Palgalõhe näitab, mitu protsenti on naiste brutotunnipalk meeste omast madalam."
+      )),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
 
     mod_metric_change_server(
       "disp_ft",
       reactive(results()$original$"disp income gap workers"),
-      reactive(results()$computed$"new disp inc gap ft")
+      reactive(results()$computed$"new disp inc gap ft"),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
     mod_metric_change_server(
       "disp",
       reactive(results()$original$"disp income gap all"),
-      reactive(results()$computed$"new disp inc gap")
+      reactive(results()$computed$"new disp inc gap"),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
   })
 }

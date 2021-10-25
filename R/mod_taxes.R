@@ -127,10 +127,12 @@ mod_taxes_server <- function(id, i18n, results) {
     })
     
     mod_metric_server("tax_change",
-                      reactive(results()$computed$"total tax change"))
+                      reactive(results()$computed$"total tax change"),
+                      reactive(i18n()$t("Tegelik väärtus")))
     
     mod_metric_server("benefits_change",
-                      reactive(results()$computed$"total benefits change"))
+                      reactive(results()$computed$"total benefits change"),
+                      reactive(i18n()$t("Tegelik väärtus")))
     
     output$taxes <-
       renderTable(taxes_table(), width = "100%", striped = TRUE)
