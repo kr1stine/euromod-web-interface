@@ -59,6 +59,9 @@ mod_gender_pay_gap_server <- function(id, i18n, results){
       "disp_ft",
       reactive(results()$original$"disp income gap workers"),
       reactive(results()$computed$"new disp inc gap ft"),
+      desc_tt = reactive(i18n()$t(
+        "Palgalõhe näitab, mitu protsenti on naiste brutotunnipalk meeste omast madalam."
+      )),
       old_tt = reactive(i18n()$t("Tegelik väärtus")),
       new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )

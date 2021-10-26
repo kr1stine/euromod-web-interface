@@ -59,6 +59,9 @@ golem::add_utils( "formatting" )
 usethis::use_testthat(parallel = TRUE)
 usethis::use_test("ComputedProvider")
 
+usethis::use_test("metric")
+usethis::use_test("metric_description")
+
 # Documentation
 devtools::document()
 

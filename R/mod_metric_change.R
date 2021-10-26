@@ -46,7 +46,7 @@ mod_metric_change_server <-
           else
             "red"
         
-        tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
+        icon("arrow-down", style = sprintf("color: %s", color))
       })
       
       mod_metric_description_server("decription", desc_tt)

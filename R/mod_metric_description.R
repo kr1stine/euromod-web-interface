@@ -10,10 +10,7 @@
 mod_metric_description_ui <- function(id, title, description) {
   ns <- NS(id)
   div(strong(title),
-      p(description,
-        span(
-          id = ns("info"), icon("question-circle", "far", "font-awesome")
-        )),
+      p(description),
       uiOutput(ns("tooltip")))
 }
     
@@ -25,11 +22,18 @@ mod_metric_description_server <- function(id, tooltip = reactive(NULL)){
     ns <- session$ns
  
     output$tooltip <- renderUI({
-      if (is.null(tooltip())) {
-        span()
+      
+      tt <- tooltip
+      if (is.null(tt)) {
+        span("Empty")
       } else {
-        # TODO: FIX TOOLTIP
-        shinyBS::bsTooltip(id = ns("info"), title = tooltip())
+        span(
+          span(
+            id = ns("info"), icon("question-circle", "far", "font-awesome")
+          ),
+          shinyBS::bsTooltip(id = ns("info"), title = tt)
+        )
+        
       }
     })
   })
