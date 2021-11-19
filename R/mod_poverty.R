@@ -83,34 +83,34 @@ mod_poverty_server <- function(id, i18n, results){
       dataframe
     })
     
-    output$hh_abs <-
-      renderPlot(
-        CGPfunctions::newggslopegraph(
-          dataframe = translated_data(),
-          Times = scenario,
-          Measurement = abs_poverty,
-          Grouping = household,
-          Title = i18n()$t("Absoluutse vaesuse määra muutus"),
-          SubTitle = i18n()$t("Leibkondade kaupa"),
-          YTextSize = 4,
-          DataTextSize = 4,
-          Caption = NULL
-        )
-      )
-    
-    output$hh_rel <-
-      renderPlot(
-        CGPfunctions::newggslopegraph(
-          dataframe = translated_data(),
-          Times = scenario,
-          Measurement = rel_poverty,
-          Grouping = household,
-          Title = i18n()$t("Suhtelise vaesuse määra muutus"),
-          SubTitle = i18n()$t("Leibkondade kaupa"),
-          YTextSize = 4,
-          DataTextSize = 4,
-          Caption = NULL
-        )
-      )
+    # output$hh_abs <-
+    #   renderPlot(
+    #     CGPfunctions::newggslopegraph(
+    #       dataframe = translated_data(),
+    #       Times = scenario,
+    #       Measurement = abs_poverty,
+    #       Grouping = household,
+    #       Title = i18n()$t("Absoluutse vaesuse määra muutus"),
+    #       SubTitle = i18n()$t("Leibkondade kaupa"),
+    #       YTextSize = 4,
+    #       DataTextSize = 4,
+    #       Caption = NULL
+    #     )
+    #   )
+    # 
+    # output$hh_rel <-
+    #   renderPlot(
+    #     CGPfunctions::newggslopegraph(
+    #       dataframe = translated_data(),
+    #       Times = scenario,
+    #       Measurement = rel_poverty,
+    #       Grouping = household,
+    #       Title = i18n()$t("Suhtelise vaesuse määra muutus"),
+    #       SubTitle = i18n()$t("Leibkondade kaupa"),
+    #       YTextSize = 4,
+    #       DataTextSize = 4,
+    #       Caption = NULL
+    #     )
+    #   )
   })
 }

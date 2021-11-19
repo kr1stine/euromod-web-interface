@@ -25,6 +25,11 @@ usethis::use_package("shiny.i18n")
 usethis::use_package("shinyvalidate")
 usethis::use_package("CGPfunctions")
 
+## Dev dependencies
+usethis::use_package("golem", "Suggests")
+usethis::use_package("testthat", "Suggests")
+usethis::use_package("usethis", "Suggests")
+
 # 
 usethis::use_r("ComputedProvider")
 
