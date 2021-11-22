@@ -9,7 +9,7 @@ app_ui <- function(request) {
   
   tagList(add_external_resources(i18n),
           fluidPage(
-            uiOutput("title"),
+            titlePanel(i18n$t("Miinimumpalga tõusu mõju palgalõhele")),
             column(
               2,
               offset = 10,

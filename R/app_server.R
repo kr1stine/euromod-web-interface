@@ -18,12 +18,6 @@ app_server <- function(input, output, session) {
     translator
   })
   
-  output$title <-
-    renderUI(titlePanel(
-      i18n()$t("Miinimumpalga tõusu mõju palgalõhele"),
-      i18n()$t("Miinimumpalga tõusu mõju palgalõhele")
-    ))
-  
   limits <- provider$get_input_limits()
   
   app_inputs <- callModule(mod_input_panel_server, "main_input", i18n, limits)
