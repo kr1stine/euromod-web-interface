@@ -23,41 +23,42 @@ mod_metric_change_ui <- function(id, title, description) {
 
 down_arrow <- function() {
   tags$i(class = "fa fa-arrow-down")
-         #style = "color: rgb(0,166,90)")
+  #style = "color: rgb(0,166,90)")
 }
 
 #' metric_change Server Functions
 #'
 #' @noRd
 mod_metric_change_server <-
-  function(id,
+  function(input,
+           output,
+           session,
            old_value,
            new_value,
            more_is_positive = FALSE,
            desc_tt = NULL,
            old_tt = NULL,
            new_tt = NULL) {
-    moduleServer(id, function(input, output, session) {
-      ns <- session$ns
+    ns <- session$ns
+    
+    output$arrow <- renderUI({
+      nv <- new_value()
+      ov <- old_value()
       
-      output$arrow <- renderUI({
-        nv <- new_value()
-        ov <- old_value()
-        
-        color = if (nv > ov && more_is_positive || nv < ov && !more_is_positive)
-            "rgb(0,166,90)"
-          else if (nv == ov)
-            "black"
-          else
-            "red"
-        
-        tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
-      })
+      color = if (nv > ov &&
+                  more_is_positive || nv < ov && !more_is_positive)
+        "rgb(0,166,90)"
+      else if (nv == ov)
+        "black"
+      else
+        "red"
       
-      mod_metric_description_server("decription", desc_tt)
-      
-      mod_metric_server("old", old_value, old_tt)
-      
-      mod_metric_server("new", new_value, new_tt)
+      tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
     })
+    
+    callModule(mod_metric_description_server, "decription", desc_tt)
+    
+    callModule(mod_metric_server, "old", old_value, old_tt)
+    
+    callModule(mod_metric_server, "new", new_value, new_tt)
   }

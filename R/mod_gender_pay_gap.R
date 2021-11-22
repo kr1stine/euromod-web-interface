@@ -40,26 +40,24 @@ mod_gender_pay_gap_ui <- function(id, i18n) {
 #' gender_pay_gap Server Functions
 #'
 #' @noRd 
-mod_gender_pay_gap_server <- function(id, i18n, results){
-  moduleServer( id, function(input, output, session){
+mod_gender_pay_gap_server <- function(input, output, session, i18n, results){
     ns <- session$ns
 
-    mod_metric_change_server(
+    callModule(mod_metric_change_server,
       "pay_gap",
       reactive(results()$original$"gender pay gap"),
       reactive(results()$computed$"new pay gap")
     )
 
-    mod_metric_change_server(
+    callModule(mod_metric_change_server,
       "disp_ft",
       reactive(results()$original$"disp income gap workers"),
       reactive(results()$computed$"new disp inc gap ft")
     )
     
-    mod_metric_change_server(
+    callModule(mod_metric_change_server,
       "disp",
       reactive(results()$original$"disp income gap all"),
       reactive(results()$computed$"new disp inc gap")
     )
-  })
 }

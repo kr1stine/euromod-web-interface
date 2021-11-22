@@ -20,6 +20,9 @@ ComputedProvider <- R6::R6Class(
       return(df)
     },
     
+    #' Return the precomputed values
+    #' @param year singular numeric
+    #' @param min_wage singular numeric
     compute = function(year, min_wage) {
       
       computed <-

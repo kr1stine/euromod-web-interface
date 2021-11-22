@@ -18,7 +18,7 @@
 usethis::use_package("dplyr")
 usethis::use_package("purrr")
 usethis::use_package("R6")
-usethis::use_package("shiny")
+usethis::use_package("shiny", min_version = "1.4.0")
 usethis::use_package("shinyjs")
 usethis::use_package("shinyBS")
 usethis::use_package("shiny.i18n")

@@ -20,8 +20,7 @@ mod_metric_description_ui <- function(id, title, description){
 #' metric_description Server Functions
 #'
 #' @noRd 
-mod_metric_description_server <- function(id, tooltip = NULL){
-  moduleServer( id, function(input, output, session){
+mod_metric_description_server <- function(input, output, session, tooltip = NULL){
     ns <- session$ns
  
     output$tooltip <- renderUI({
@@ -29,9 +28,9 @@ mod_metric_description_server <- function(id, tooltip = NULL){
         span()
       } else {
         # TODO: FIX TOOLTIP
-        shinyBS::bsTooltip(id = ns("info"), title = tooltip,
-                  placement = "bottom", trigger = "hover")
+        # shinyBS::bsTooltip(id = ns("info"), title = tooltip,
+        #           placement = "bottom", trigger = "hover")
+        span()
       }
     })
-  })
 }

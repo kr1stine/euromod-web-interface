@@ -4,10 +4,10 @@
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd 
+#' @noRd
 #'
-#' @importFrom shiny NS tagList 
-mod_metric_ui <- function(id){
+#' @importFrom shiny NS tagList
+mod_metric_ui <- function(id) {
   ns <- NS(id)
   # div(
   #   div(id = ns("value_id"), textOutput(ns("value"))),
@@ -16,23 +16,23 @@ mod_metric_ui <- function(id){
   # )
   textOutput(ns("value"))
 }
-    
+
 #' metric Server Functions
 #'
-#' @noRd 
-mod_metric_server <- function(id, metric, tooltip = NULL){
-  moduleServer( id, function(input, output, session){
+#' @noRd
+mod_metric_server <-
+  function(input, output, session, metric, tooltip = NULL) {
     ns <- session$ns
- 
+    
     output$value <- renderText(sprintf("%.2f%%", metric()))
-
+    
     # TODO: FIX TOOLTIP
     output$tooltip <- renderUI({
       if (is.null(tooltip)) {
         span()
       } else {
-        shinyBS::bsTooltip(ns("value_id"), toolTip, "top", "hover")
+        #shinyBS::bsTooltip(ns("value_id"), toolTip, "top", "hover")
+        span()
       }
     })
-  })
-}
+  }

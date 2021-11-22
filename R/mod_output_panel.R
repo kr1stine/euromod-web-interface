@@ -22,8 +22,7 @@ mod_output_panel_ui <- function(id, i18n){
 #' output_panel Server Functions
 #'
 #' @noRd 
-mod_output_panel_server <- function(id, i18n, results){
-  moduleServer( id, function(input, output, session){
+mod_output_panel_server <- function(input, output, session, i18n, results){
     ns <- session$ns
  
     # observe({
@@ -33,12 +32,11 @@ mod_output_panel_server <- function(id, i18n, results){
     #     message("IS NOT NULL")
     #   }
     # })
-    mod_gender_pay_gap_server("gender_pay_gap", i18n, results)
+    callModule(mod_gender_pay_gap_server, "gender_pay_gap", i18n, results)
     
-    mod_poverty_server("poverty", i18n, results)
+    callModule(mod_poverty_server, "poverty", i18n, results)
 
-    mod_taxes_server("taxes", i18n, results)
-  })
+    callModule(mod_taxes_server, "taxes", i18n, results)
 }
     
 ## To be copied in the UI
