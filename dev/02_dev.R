@@ -27,6 +27,8 @@ usethis::use_package("CGPfunctions")
 
 # 
 usethis::use_r("ComputedProvider")
+usethis::use_r("DelayedProvider")
+usethis::use_r("I18N")
 
 ## Add modules ----
 ## Create a module infrastructure in R/
@@ -58,6 +60,7 @@ golem::add_utils( "formatting" )
 ## Add one line by test you want to create
 usethis::use_testthat(parallel = TRUE)
 usethis::use_test("ComputedProvider")
+usethis::use_test("DelayedProvider")
 
 # Documentation
 devtools::document()

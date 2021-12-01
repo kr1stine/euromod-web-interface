@@ -1,14 +1,17 @@
-
-#' Provider for precomputed results
+#' Provider for pre-computed results
 #' @export
-#' @importFrom dplyr %>%
 ComputedProvider <- R6::R6Class(
   "ComputedProvider",
   public = list(
+    #' @description
+    #' Get input limits
+    #' @importFrom dplyr %>% filter
+    #' @importFrom purrr map
+    #' @return dataframe of (year, min, max)
     get_input_limits = function(){
       values <- unique(income_poverty_taxes_benefits$year) %>%
-        purrr::map( ~ dplyr::filter(income_poverty_taxes_benefits, year == .x)) %>%
-        purrr::map(function(x) {
+        map( ~ filter(income_poverty_taxes_benefits, year == .x)) %>%
+        map(function(x) {
           mwage <- x$"min wage"
           c(x$year[1], min(mwage), max(mwage))
         })
@@ -19,8 +22,8 @@ ComputedProvider <- R6::R6Class(
       
       return(df)
     },
-    
-    #' Return the precomputed values
+    #' @description
+    #' Return the pre-computed values
     #' @param year singular numeric
     #' @param min_wage singular numeric
     compute = function(year, min_wage) {

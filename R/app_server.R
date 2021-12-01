@@ -5,6 +5,7 @@
 #' @import shiny
 #' @noRd
 app_server <- function(input, output, session) {
+  #provider <- DelayedProvider$new(5)
   provider <- ComputedProvider$new()
   
   observeEvent(input$selector, ignoreInit = TRUE, {

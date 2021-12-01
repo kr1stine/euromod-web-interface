@@ -9,7 +9,10 @@ app_ui <- function(request) {
   
   tagList(add_external_resources(i18n),
           fluidPage(
+            theme = "deps/brand.stat.ee.css",
+            #theme = "deps/lux.bootswatch.css",
             titlePanel(i18n$t("Miinimumpalga tõusu mõju palgalõhele")),
+            
             column(
               2,
               offset = 10,
@@ -42,6 +45,7 @@ add_external_resources <- function(i18n) {
   # )
   
   tags$head(# bundle_resources(
+    #htmltools::htmlDependency('rege', '0.0.9000', app_sys('app/www'), package = "rege"),
     #   path = app_sys('app/www'),
     #   app_title = "Not used"
     # ),

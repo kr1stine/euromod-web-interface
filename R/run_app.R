@@ -16,12 +16,15 @@ run_app <- function(onStart = NULL,
   
   shinyOptions(i18n = translator)
   
+  # Is this the right way to add this?
+  addResourcePath("deps", app_sys("app/www"))
+  
   shiny::shinyApp(
     ui = app_ui,
     server = app_server,
     onStart = onStart,
     #options = options,
     enableBookmarking = enableBookmarking,
-    uiPattern = uiPattern
+    uiPattern = "/ee"
   )
 }

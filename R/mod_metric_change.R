@@ -10,14 +10,17 @@
 mod_metric_change_ui <- function(id, title, description) {
   ns <- NS(id)
   fluidRow(
-    column(8, mod_metric_description_ui(ns("description"), title, description)),
-    column(
-      4,
-      align = "center",
-      mod_metric_ui(ns("old")),
-      uiOutput(ns("arrow")),
-      mod_metric_ui(ns("new"))
-    )
+    column(9, mod_metric_description_ui(ns("description"), title, description)),
+    column(1, align = "center", mod_metric_ui(ns("old"))),
+    column(1, align = "center", uiOutput(ns("arrow"))),
+    column(1, align = "center", mod_metric_ui(ns("new")))
+    # column(
+    #   4,
+    #   align = "center",
+    #   mod_metric_ui(ns("old")),
+    #   uiOutput(ns("arrow")),
+    #   mod_metric_ui(ns("new"))
+    # )
   )
 }
 
@@ -53,7 +56,7 @@ mod_metric_change_server <-
       else
         "red"
       
-      tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
+      tags$i(class = "fa fa-arrow-right", style = sprintf("color: %s", color))
     })
     
     callModule(mod_metric_description_server, "decription", desc_tt)
