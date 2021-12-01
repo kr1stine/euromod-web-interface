@@ -61,6 +61,7 @@ golem::add_utils( "formatting" )
 usethis::use_testthat(parallel = TRUE)
 usethis::use_test("ComputedProvider")
 usethis::use_test("DelayedProvider")
+usethis::use_test("I18N")
 
 # Documentation
 devtools::document()

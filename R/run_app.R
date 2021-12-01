@@ -25,6 +25,6 @@ run_app <- function(onStart = NULL,
     onStart = onStart,
     #options = options,
     enableBookmarking = enableBookmarking,
-    uiPattern = "/ee"
+    uiPattern = uiPattern
   )
 }
