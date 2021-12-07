@@ -7,14 +7,22 @@
 app_server <- function(input, output, session) {
   provider <- ComputedProvider$new()
   
-  observeEvent(input$selector, ignoreInit = TRUE, {
-    shiny.i18n::update_lang(session, input$selector)
+  lang <- reactiveVal("ee")
+  
+  observeEvent(input$"lang-en", ignoreInit = TRUE, {
+    shiny.i18n::update_lang(session, "en")
+    lang("en")
+  })
+  
+  observeEvent(input$"lang-et", ignoreInit = TRUE, {
+    shiny.i18n::update_lang(session, "ee")
+    lang("ee")
   })
   
   translator <- getShinyOption("i18n")
   
   i18n <- reactive({
-    translator$set_translation_language(input$selector)
+    translator$set_translation_language(lang())
     translator
   })
   

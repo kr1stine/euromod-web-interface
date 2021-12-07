@@ -16,6 +16,8 @@ run_app <- function(onStart = NULL,
   
   shinyOptions(i18n = translator)
   
+  addResourcePath("rege", "inst/app/www")
+  
   shiny::shinyApp(
     ui = app_ui,
     server = app_server,
