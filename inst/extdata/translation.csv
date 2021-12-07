@@ -1,0 +1,60 @@
+I18N,EE,ENG
+INVALID_INPUT,Sisend väljaspool vahemikku,Input outside range
+LANG_CHANGE,Keelt muuta,Change Language
+LOADING,"Palun oota, arvutan...",Loading...
+POVERTY,Vaesus,Poverty
+TAXES_BENEFITS,Maksud ja toetused,Taxes and benefits
+APP_DESC,"Rakendus ennustab miinimumpalga muutuse esmast mõju sotsiaalsetele näitajatele, eeldusel, et muud näitajad jäävad samaks.","The application predicts the first-hand effects of an increase in the minimum wage on social indicators, provided that other indicators remain the same."
+INPUT_WAGE_DESC,Sisesta miinimumpalk (bruto),Insert gross minimum wage (gross)
+INPUT_YEAR_DESC,Rakendumise aasta,Year of implementation
+WORK_POP,Töötav elanikkond,Working population
+GENDER_PAY_GAP,Sooline palgalõhe,The gender pay gap
+GROSS_GENDER_PAY_GAY,Täisajaga töötavate meeste ja naiste brutotunnipalkade lõhe.,The gross hourly pay gap between men and women in full - time employment.
+GENDER_PAY_GAP_DISP_INC,Kättesaadava sissetuleku sooline lõhe,Gender gap in disposable income
+INCOME_GENDER_PAY_GAP,Täisajaga töötavate meeste ja naiste kasutatava sissetuleku (brutopalk + toetused - maksud) lõhe.,The income gap (gross wages + benefits - taxes) of men and women in full - time employment.
+WHOLE_POP,Kogu elanikkond,The whole population
+POS_DISP_GENDER_PAY_GAP,Positiivse sissetulekuga meeste ja naiste kasutatava sissetuleku (brutopalk + toetused - maksud) lõhe. ,The gap between the disposable income (gross wages + benefits - taxes) of men and women with a positive income.
+EXTREME_POV_RATE,Absoluutse vaesuse määr,Extreme poverty rate
+18,"Nende elanike osatähtsus, kelle sissetulek jääb alla elatusmiinimumi. ",Proportion of the population whose income is below the subsistence level.
+19,"Absoluutse vaesuse määr näitab, mitu protsenti kogu elanikkonnast on absoluutses vaesuses, ehk nende ekvivalentnetosissetulek on allpool elatusmiinimumi.",The extreme poverty rate shows the percentage of individuals whose equivalent disposable income is lower than the subsistence level.
+REL_POV_RATE,Suhtelise vaesuse määr,Relative poverty rate
+POV_RATE_WORK,Palgavaesuse määr,In-work poverty rate
+22,"Nende elanike osatähtsus, kes on vaesuses vaatamata sellele, et käivad tööl.",The amount of people who are at risk of poverty regardless that they are employed
+23,"Palgavaesus näitab, mitu protsenti töötavatest inimestest on suhtelises vaesuses, ehk nende ekvivalentnetosissetulek on allpool suhtelise vaesuse piiri.",The proportion of working individuals whose equivalised disposable income is under the at-risk-of-poverty threshold.
+24,"Nende elanike osatähtsus, kes on suhtelises vaesuses.",The proportion of the population whose equivalent disposable income is below the relative poverty threshold.
+25,"Suhtelise vaesuse määr näitab, mitu protsenti kogu elanikkonnast on suhtelises vaesuses, ehk nende ekvivalentnetosissetulek on allpool suhtelise vaesuse piiri.",The at-risk-ofpoverty rate shows the percentage of individuals whose equivalent disposable income is below the at-risk-at-poverty threshold
+26,Absoluutse vaesuse määra muutus,Change in absolute poverty rate
+27,Leibkondade kaupa,By households
+HOUSE_1_MAN,Üksik mees,Single man
+HOUSE_1_WOMAN,Üksik naine,Single woman
+HOUSE_COUPLE,Lasteta paar,Couple without children
+HOUSE_COUPLE_CHILDREN,Kolme ja enama lapsega paar,Couple with three or more children
+HOUSE_COUPLE_1_CHILD,Ühe lapsega paar,Couple with one child
+HOUSE_COUPLE_2_CHILD,Kahe lapsega paar,Couple with two children
+HOUSE_1_PARENT,Üksikvanem,Single parent
+CHANGE_REL_POV_RATE,Suhtelise vaesuse määra muutus,Change in relative poverty rate
+ACTUAL,Tegelik,Actual
+PROJECTED,Ennustatud,Projected
+38,Riigi tööjõumaksutulu ja kulutused toetustele,State labor tax revenue and expenditure on benefits
+39,Laekuvad tööjõumaksud,Labor taxes receivable
+40,Väljamakstavad toetused,Benefits to be paid
+TAX,Maks,Tax
+ACTUAL_TAX_REV,Tegelik maksutulu,Actual tax revenue
+EST_TAX_REV,Ennustatav maksutulu,Estimated tax revenue
+CHANGE,Muutus,Change
+SOCIAL_TAX,Sotsiaalmaks,Social tax
+INCOME_TAX,Tulumaks,Income tax
+SUM,Kokku,Sum
+BENEFIT,Toetus,Benefit
+ACTUAL_COST,Tegelik kulu,Actual cost
+EST_COST,Ennustatav kulu,Estimated cost
+SUBS_BENEFIT,Toimetulekutoetus,Subsistence benefit
+OTHER_BENEFIT,Muud toetused,Other benefits
+RUN,Arvuta,Run
+54,Miinimumpalk ei tohi olla tühi!,The minimum wage must not be empty!
+55,Palun sisesta tegelikust miinimumpalgast kõrgem väärtus.,Please enter a value higher than the actual minimum wage.
+ACTUAL_VAL,Tegelik väärtus,Actual value
+PROJECTED_VAL,Ennustatatud uus väärtus,Predicted new value
+GENDER_PAY_GAP_DESC,"Palgalõhe näitab, mitu protsenti on naiste brutotunnipalk meeste omast madalam.",The gender pay gap shows how many percent the gross hourly pay of women is lower than the gross hourly pay of men.
+DISP_INCOME_DESC,"Arv näitab, mitu protsenti on naiste kuus kättesaadav sissetulek meeste omast madalam.",The indicator shows how many percent the disposable income of women is lower than the disposable income of men.
+TITLE,Miinimumpalga tõusu mõju palgalõhele,Impact of the increase in the minimum wage on the pay gap

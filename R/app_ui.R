@@ -7,29 +7,42 @@
 app_ui <- function(request) {
   i18n <- getShinyOption("i18n")
   
-  tagList(add_external_resources(i18n),
-          fluidPage(
-            theme = "deps/brand.stat.ee.css",
-            #theme = "deps/lux.bootswatch.css",
-            titlePanel(i18n$t("Miinimumpalga tõusu mõju palgalõhele")),
-            
-            column(
-              2,
-              offset = 10,
-              selectInput(
-                "selector",
-                label = NULL,
-                choices = list("Eesti keel" = "ee",
-                               "In English" = "en"),
-                selected = i18n$get_key_translation()
-              )
-            ),
-            sidebarLayout(
-              sidebarPanel(mod_input_panel_ui("main_input", i18n)),
-              mainPanel(mod_output_panel_ui("main_output", i18n))
-            )
-          ))
+  tagList(
+    add_external_resources(i18n),
+    fluidPage(
+      theme = "deps/brand.stat.ee.css",
+      #theme = "deps/lux.bootswatch.css",
+      titlePanel(i18n$t("Miinimumpalga tõusu mõju palgalõhele")),
+      
+      column(
+        2,
+        offset = 10,
+        selectInput(
+          "selector",
+          label = NULL,
+          choices = list("Eesti keel" = "ee",
+                         "In English" = "en"),
+          selected = i18n$get_key_translation()
+        )
+      ),
+      sidebarLayout(
+        sidebarPanel(mod_input_panel_ui("main_input", i18n)),
+        mainPanel(mod_output_panel_ui("main_output", i18n))
+      )
+    )
+  )
 }
+
+i18n_app_ui <- function(i18n) {
+  function() {
+    tagList(
+      fluidPage(
+        theme = "deps/brand.stat.ee.css",
+        titlePanel(i18n$sr('TITLE'))
+      ))
+  }
+}
+
 
 #' Add external Resources to the Application
 #'
