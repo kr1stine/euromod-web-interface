@@ -21,11 +21,6 @@ mod_metric_change_ui <- function(id, title, description) {
   )
 }
 
-down_arrow <- function() {
-  tags$i(class = "fa fa-arrow-down")
-  #style = "color: rgb(0,166,90)")
-}
-
 #' metric_change Server Functions
 #'
 #' @noRd
@@ -35,10 +30,10 @@ mod_metric_change_server <-
            session,
            old_value,
            new_value,
-           more_is_positive = FALSE,
-           desc_tt = NULL,
-           old_tt = NULL,
-           new_tt = NULL) {
+           desc_tt = reactive(""),
+           old_tt = reactive(""),
+           new_tt = reactive(""),
+           more_is_positive = FALSE) {
     ns <- session$ns
     
     output$arrow <- renderUI({
@@ -53,10 +48,10 @@ mod_metric_change_server <-
       else
         "red"
       
-      tags$i(class = "fa fa-arrow-down", style = sprintf("color: %s", color))
+      span(style = sprintf("color: %s", color), icon("arrow-down"))
     })
     
-    callModule(mod_metric_description_server, "decription", desc_tt)
+    callModule(mod_metric_description_server, "description", desc_tt)
     
     callModule(mod_metric_server, "old", old_value, old_tt)
     

@@ -21,7 +21,8 @@ app_ui <- function(request) {
         sidebarPanel(mod_input_panel_ui("main_input", i18n)),
         mainPanel(mod_output_panel_ui("main_output", i18n))
       )
-    )
+    ),
+    tags$script(src = "rege/main.js")
   )
 }
 

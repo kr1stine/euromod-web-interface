@@ -11,26 +11,24 @@ mod_metric_description_ui <- function(id, title, description){
   ns <- NS(id)
   div(
     strong(title),
-    p(description,
-      span(id = ns("info"), icon("question-circle", "far", "font-awesome"))),
-      uiOutput(ns("tooltip"))
+    p(description, uiOutput(ns("tooltip"), inline = TRUE))
   )
 }
     
 #' metric_description Server Functions
 #'
 #' @noRd 
-mod_metric_description_server <- function(input, output, session, tooltip = NULL){
+mod_metric_description_server <- function(input, output, session, tooltip = reactive("")){
     ns <- session$ns
  
     output$tooltip <- renderUI({
-      if (is.null(tooltip)) {
-        span()
+      tt = tooltip()
+      if (tt == "") {
+       span()
       } else {
-        # TODO: FIX TOOLTIP
-        # shinyBS::bsTooltip(id = ns("info"), title = tooltip,
-        #           placement = "bottom", trigger = "hover")
-        span()
+       span("data-toggle" = "tooltip",
+            "title" = tt,
+            icon("question-circle", "far", "font-awesome"))
       }
     })
 }

@@ -55,19 +55,34 @@ mod_poverty_server <- function(input, output, session, i18n, results){
     callModule(mod_metric_change_server,
       "in_work_poverty",
       reactive(results()$original$"in work poverty"),
-      reactive(results()$computed$"new in-work poverty rate")
+      reactive(results()$computed$"new in-work poverty rate"),
+      desc_tt = reactive(i18n()$t(
+        "Palgavaesus näitab, mitu protsenti töötavatest inimestest on suhtelises vaesuses, ehk nende ekvivalentnetosissetulek on allpool suhtelise vaesuse piiri."
+      )),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
     callModule(mod_metric_change_server,
       "relative_poverty",
       reactive(results()$original$"relative poverty rate"),
-      reactive(results()$computed$"new relative poverty rate")
+      reactive(results()$computed$"new relative poverty rate"),
+      desc_tt = reactive(i18n()$t(
+        "Suhtelise vaesuse määr näitab, mitu protsenti kogu elanikkonnast on suhtelises vaesuses, ehk nende ekvivalentnetosissetulek on allpool suhtelise vaesuse piiri."
+      )),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
     callModule(mod_metric_change_server,
       "absolute_poverty",
       reactive(results()$original$"abs poverty rate"),
-      reactive(results()$computed$"new abs poverty rate")
+      reactive(results()$computed$"new abs poverty rate"),
+      desc_tt = reactive(i18n()$t(
+        "Absoluutse vaesuse määr näitab, mitu protsenti kogu elanikkonnast on absoluutses vaesuses, ehk nende ekvivalentnetosissetulek on allpool elatusmiinimumi."
+      )),
+      old_tt = reactive(i18n()$t("Tegelik väärtus")),
+      new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
     

@@ -1,0 +1,14 @@
+name: ewi-beta
+title: ewi-beta
+username:
+account: oluwandabira
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5285106
+bundleId: 5345021
+url: https://oluwandabira.shinyapps.io/ewi-beta/
+when: 1638964061.81842
+lastSyncTime: 1638964061.81849
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .github/workflows/pr-commands.yaml|.github/workflows/R-CMD-check.yaml|.RData|man/run_app.Rd|README.md|tests/spelling.R|tests/testthat/test-ComputedProvider.R|tests/testthat/test-golem-recommended.R|tests/testthat.R

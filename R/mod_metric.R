@@ -9,30 +9,20 @@
 #' @importFrom shiny NS tagList
 mod_metric_ui <- function(id) {
   ns <- NS(id)
-  # div(
-  #   div(id = ns("value_id"), textOutput(ns("value"))),
-  #   span("DD"),
-  #   uiOutput(ns("tooltip"))
-  # )
-  textOutput(ns("value"))
+  uiOutput(ns("tooltiped"))
 }
 
 #' metric Server Functions
 #'
 #' @noRd
 mod_metric_server <-
-  function(input, output, session, metric, tooltip = NULL) {
+  function(input, output, session, metric, tooltip = reactive("")) {
     ns <- session$ns
     
-    output$value <- renderText(sprintf("%.2f%%", metric()))
-    
-    # TODO: FIX TOOLTIP
-    output$tooltip <- renderUI({
-      if (is.null(tooltip)) {
-        span()
-      } else {
-        #shinyBS::bsTooltip(ns("value_id"), toolTip, "top", "hover")
-        span()
-      }
+    output$tooltiped <- renderUI({
+      span("data-toggle" = "tooltip",
+           "data-placement" = "top",
+           "title" = tooltip(),
+           sprintf("%.2f%%", metric()))
     })
   }
