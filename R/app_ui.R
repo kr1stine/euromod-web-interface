@@ -50,8 +50,18 @@ banner <- function(i18n) {
                           width = 200
                         )
                       )),
-               column(8,
+               column(4,
                       tags$h2(
                         i18n$t("Miinimumpalga tõusu mõju palgalõhele")
-                      ))))
+                      )),
+              column(4,
+                     tags$a(
+                       img(
+                         src = "rege/rege.jpg"#,
+                         # height = 80,
+                         #width = 200
+                       )
+                     ), align = "center")
+           )
+        )
 }
