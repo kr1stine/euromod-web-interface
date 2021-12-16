@@ -32,3 +32,7 @@ body {
 a.header-lang {
   color: #ffffff;
 }
+
+.error {
+  color: red;
+}
