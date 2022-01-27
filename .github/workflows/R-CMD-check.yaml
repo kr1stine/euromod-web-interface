@@ -27,10 +27,6 @@ jobs:
         run: sudo apt install libcurl4-openssl-dev
         shell: bash
         
-      # - uses: r-lib/actions/setup-r-dependencies@v1
-      #   with:
-      #     pak-version: stable
-      #     extra-packages: rcmdcheck
       - uses: r-lib/actions/setup-renv@v2
       
       - name: Install rcmdcheck
