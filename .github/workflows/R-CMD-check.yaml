@@ -27,6 +27,11 @@ jobs:
       #     pak-version: stable
       #     extra-packages: rcmdcheck
       - uses: r-lib/actions/setup-renv@v2
+      
+      - name: Install rcmdcheck
+        if: always()
+        run: Rscript -e 'renv::install("rcmdcheck")'
+        shell: bash
 
       - uses: r-lib/actions/check-r-package@v1
 
