@@ -7,18 +7,13 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_metric_change_ui <- function(id, title, description) {
+mod_metric_change_ui <- function(id) {
   ns <- NS(id)
-  fluidRow(
-    column(8, mod_metric_description_ui(ns("description"), title, description)),
-    column(
-      4,
-      align = "center",
+  tagList(
       mod_metric_ui(ns("old")),
       uiOutput(ns("arrow")),
       mod_metric_ui(ns("new"))
     )
-  )
 }
 
 #' metric_change Server Functions
@@ -30,7 +25,6 @@ mod_metric_change_server <-
            session,
            old_value,
            new_value,
-           desc_tt = reactive(""),
            old_tt = reactive(""),
            new_tt = reactive(""),
            more_is_positive = FALSE) {
@@ -50,8 +44,6 @@ mod_metric_change_server <-
       
       span(style = sprintf("color: %s", color), icon("arrow-down"))
     })
-    
-    callModule(mod_metric_description_server, "description", desc_tt)
     
     callModule(mod_metric_server, "old", old_value, old_tt)
     

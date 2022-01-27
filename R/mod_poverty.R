@@ -13,7 +13,7 @@ mod_poverty_ui <- function(id, i18n){
     br(),
     h4(i18n$t("Töötav elanikkond")),
     br(),
-    mod_metric_change_ui(
+    mod_desc_metric_change_ui(
       ns("in_work_poverty"),
       i18n$t("Palgavaesuse määr"),
       i18n$t(
@@ -22,37 +22,38 @@ mod_poverty_ui <- function(id, i18n){
     ),
     h4(i18n$t("Kogu elanikkond")),
     br(),
-    mod_metric_change_ui(
+    mod_desc_metric_change_ui(
       ns("relative_poverty"),
       i18n$t("Suhtelise vaesuse määr"),
       i18n$t("Nende elanike osatähtsus, kes on suhtelises vaesuses.")
     ),
-    br(),
-    mod_metric_change_ui(
+    uiOutput(ns("hh_rel")),
+    br(),br(),
+    mod_desc_metric_change_ui(
       ns("absolute_poverty"),
       i18n$t("Absoluutse vaesuse määr"),
       i18n$t(
         "Nende elanike osatähtsus, kelle sissetulek jääb alla elatusmiinimumi."
       )
     ),
+    uiOutput(ns("hh_abs")),
     br(),
-    fluidRow(column(11, align = "center", plotOutput(
-      ns("hh_abs")
-    ))),
-    br(),
-    fluidRow(column(11, align = "center", plotOutput(
-      ns("hh_rel")
-    )))
   )
 }
     
 #' poverty Server Functions
 #'
+#' @description A shiny Module.
+#'
+#' @param id,input,output,session Internal parameters for {shiny}.
+#'
 #' @noRd 
+#'
+#' @importFrom shiny NS tagList 
 mod_poverty_server <- function(input, output, session, i18n, results){
     ns <- session$ns
  
-    callModule(mod_metric_change_server,
+    callModule(mod_desc_metric_change_server,
       "in_work_poverty",
       reactive(results()$original$"in work poverty"),
       reactive(results()$computed$"new in-work poverty rate"),
@@ -63,7 +64,7 @@ mod_poverty_server <- function(input, output, session, i18n, results){
       new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
-    callModule(mod_metric_change_server,
+    callModule(mod_desc_metric_change_server,
       "relative_poverty",
       reactive(results()$original$"relative poverty rate"),
       reactive(results()$computed$"new relative poverty rate"),
@@ -74,7 +75,7 @@ mod_poverty_server <- function(input, output, session, i18n, results){
       new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
-    callModule(mod_metric_change_server,
+    callModule(mod_desc_metric_change_server,
       "absolute_poverty",
       reactive(results()$original$"abs poverty rate"),
       reactive(results()$computed$"new abs poverty rate"),
@@ -85,46 +86,74 @@ mod_poverty_server <- function(input, output, session, i18n, results){
       new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
     )
     
-    
-    translated_data <- reactive({
-      dataframe <- results()$household
-      i18n <- i18n()
-      dataframe <-
-        dataframe %>% 
-          dplyr::mutate(household := i18n$t(household), scenario := i18n$t(scenario)) %>%
-          # newggslopegraph does not like chr vector names
-          dplyr::rename("abs_poverty" = "absolute poverty", "rel_poverty" = "relative poverty")
-          
-      dataframe
+    observeEvent(results, {
+      hh <- results()$household$abs
+      for (scenario in names(hh)) {
+        
+        ns_id <- ns(paste("rel", scenario))
+        callModule(mod_icon_metric_change_server, ns_id,  reactive(hh[[scenario]]$actual), reactive(hh[[scenario]]$projected))
+      }
     })
     
-    # output$hh_abs <-
-    #   renderPlot(
-    #     CGPfunctions::newggslopegraph(
-    #       dataframe = translated_data(),
-    #       Times = scenario,
-    #       Measurement = abs_poverty,
-    #       Grouping = household,
-    #       Title = i18n()$t("Absoluutse vaesuse määra muutus"),
-    #       SubTitle = i18n()$t("Leibkondade kaupa"),
-    #       YTextSize = 4,
-    #       DataTextSize = 4,
-    #       Caption = NULL
-    #     )
-    #   )
-    # 
-    # output$hh_rel <-
-    #   renderPlot(
-    #     CGPfunctions::newggslopegraph(
-    #       dataframe = translated_data(),
-    #       Times = scenario,
-    #       Measurement = rel_poverty,
-    #       Grouping = household,
-    #       Title = i18n()$t("Suhtelise vaesuse määra muutus"),
-    #       SubTitle = i18n()$t("Leibkondade kaupa"),
-    #       YTextSize = 4,
-    #       DataTextSize = 4,
-    #       Caption = NULL
-    #     )
-    #   )
+    output$hh_rel<- renderUI({
+      scenarios <- list()
+      
+      hh <- results()$household$rel
+      for (scenario in names(hh)) {
+        
+        ns_id <- ns(paste("rel", scenario))
+        ac <- hh[[scenario]]$actual
+        pr <- hh[[scenario]]$projected
+        
+        color = if (ac > pr)
+          "rgb(0,166,90)" # green
+        else if (ac == pr)
+          "black"
+        else
+          "red"
+        
+        scenarios[[scenario]] <- fluidRow(
+          br(),
+          column(8, span(i18n()$t(scenario))), 
+          column(4, align = "center", tagList(
+            span(sprintf("%.2f%%", ac)),
+            span(style = sprintf("color: %s", color), icon("arrow-right")),
+            span(sprintf("%.2f%%", pr))
+          )),
+        )
+      }
+      
+      div(scenarios)
+    })
+    
+    output$hh_abs<- renderUI({
+      scenarios <- list()
+      
+      hh <- results()$household$abs
+      for (scenario in names(hh)) {
+        ns_id <- ns(paste("rel", scenario))
+        ac <- hh[[scenario]]$actual
+        pr <- hh[[scenario]]$projected
+        
+        color = if (ac > pr)
+          "rgb(0,166,90)" # green
+        else if (ac == pr)
+          "black"
+        else
+          "red"
+        
+        scenarios[[scenario]] <- fluidRow(
+          br(),
+          column(8, span(i18n()$t(scenario))), 
+          column(4, align = "center", tagList(
+            span(sprintf("%.2f%%", ac)),
+            span(style = sprintf("color: %s", color), icon("arrow-right")),
+            span(sprintf("%.2f%%", pr))
+          )),
+          
+        )
+      }
+      
+      div(scenarios)
+    })
 }

@@ -5,10 +5,10 @@ account: oluwandabira
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5285106
-bundleId: 5355028
+bundleId: 5506020
 url: https://oluwandabira.shinyapps.io/ewi-beta/
-when: 1639133782.76312
-lastSyncTime: 1639133782.76313
+when: 1643114488.40857
+lastSyncTime: 1643114488.40861
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .github/workflows/pr-commands.yaml|.github/workflows/R-CMD-check.yaml|.RData|man/run_app.Rd|README.md|tests/spelling.R|tests/testthat/test-ComputedProvider.R|tests/testthat/test-golem-recommended.R|tests/testthat.R
+ignoredFiles: .github/workflows/pr-commands.yaml|.github/workflows/R-CMD-check.yaml|.RData|man/run_app.Rd|README.md|tests/spelling.R|tests/testthat/test-ComputedProvider.R|tests/testthat.R

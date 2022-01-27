@@ -1,7 +1,7 @@
 
 #' Provider for precomputed results
 #' @export
-#' @importFrom dplyr %>%
+#' @importFrom dplyr %>% filter
 ComputedProvider <- R6::R6Class(
   "ComputedProvider",
   public = list(
@@ -20,9 +20,6 @@ ComputedProvider <- R6::R6Class(
       return(df)
     },
     
-    #' Return the precomputed values
-    #' @param year singular numeric
-    #' @param min_wage singular numeric
     compute = function(year, min_wage) {
       
       computed <-
@@ -33,16 +30,36 @@ ComputedProvider <- R6::R6Class(
         )
       
       hh <-
-        dplyr::filter(household_poverty,
+        filter(household_poverty,
                       .data$year == .env$year,
                       .data$"min wage" == .env$min_wage)
       
-      orig <- dplyr::filter(original, .data$year == .env$year)
+      df_hh_abs <- hh[c("household", "scenario", "absolute poverty")]
+      df_hh_rel <- hh[c("household", "scenario", "relative poverty")]
+      
+      hh_abs <- list()
+      
+      for (household in unique(df_hh_abs$household)) {
+        abs_hh <- dplyr::filter(df_hh_abs, .data$"household" == household)
+        values <- abs_hh$"absolute poverty"
+        hh_abs[[household]] <- list("actual" = values[1], "projected" = values[2])
+      }
+      
+      hh_rel <- list()
+      
+      for (household in unique(df_hh_rel$household)) {
+        rel_hh <- dplyr::filter(df_hh_rel, .data$"household" == household)
+        values <- abs_hh$"absolute poverty"
+        hh_rel[[household]] <- list("actual" = values[1], "projected" = values[2])
+      }
+      
+      
+      orig <- filter(original, .data$year == .env$year)
       
       return(list(
         "computed" = computed,
         "original" = orig,
-        "household" = hh
+        "household" = list("abs" = hh_abs, "rel" = hh_rel)
       ))
     }
   )

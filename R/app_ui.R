@@ -9,9 +9,9 @@ app_ui <- function(request) {
   tagList(
     tags$head(
       tags$title("Miinimumpalga tõusu mõju palgalõhele"),
-      tags$link(type = "image/png", rel = "icon", href="rege/ES_favicon.png"),
+      tags$link(type = "image/png", rel = "icon", href = "rege/ES_favicon.png"),
       shiny.i18n::usei18n(i18n)
-      ),
+    ),
     #,
     fluidPage(
       theme = "rege/style.css",
@@ -27,41 +27,45 @@ app_ui <- function(request) {
 }
 
 header <- function(i18n) {
-  div(class = "container-fluid", id = "header", 
-  div(class = "row",
-      column(4, i18n$t("Statistikaamet")),
-      column(4, align = "right", offset = 4, 
-             actionLink("lang-et", "EST", class = "header-lang"),
-             span("|", class = "header-lang"),
-             actionLink("lang-en", "ENG", class = "header-lang"))
-  )
-  )
+  div(class = "container-fluid",
+      id = "header",
+      div(
+        class = "row",
+        column(4, i18n$t("Statistikaamet")),
+        column(
+          4,
+          align = "right",
+          offset = 4,
+          actionLink("lang-et", "EST", class = "header-lang"),
+          span("|", class = "header-lang"),
+          actionLink("lang-en", "ENG", class = "header-lang")
+        )
+      ))
 }
 
 
 banner <- function(i18n) {
-  tags$div(id = "banner",
-           div(class = "row",
-               column(4,
-                      tags$a(
-                        img(
-                          src = "rege/ES_Logo.svg",
-                          height = 80,
-                          width = 200
-                        )
-                      )),
-               column(4,
-                      tags$h2(
-                        i18n$t("Miinimumpalga tõusu mõju palgalõhele")
-                      )),
-              column(4,
-                     tags$a(
-                       img(
-                         src = "rege/rege.jpg"#,
-                         # height = 80,
-                         #width = 200
-                       )
-                     ), align = "center")
-           )
-        )
+  div(id = "banner",
+      fluidRow(
+        column(4,
+               tags$a(
+                 img(
+                   src = "rege/ES_Logo.svg",
+                   height = 80,
+                   width = 200
+                 )
+               )),
+        column(4,
+               tags$h2(
+                 i18n$t("Miinimumpalga tõusu mõju palgalõhele")
+               )),
+        column(4,
+               tags$a(
+                 img(
+                   src = "rege/rege.jpg",
+                   height = 60,
+                   width = 150
+                 )
+               ), align = "center")
+      ))
 }
