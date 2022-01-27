@@ -20,12 +20,28 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
+          r-version: '4.0.5'
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
-        with:
-          extra-packages: rcmdcheck
+      - name: Install libcurl
+        if: always()
+        run: sudo apt install libcurl4-openssl-dev
+        shell: bash
+        
+      - uses: r-lib/actions/setup-renv@v2
+      
+      - name: Install rcmdcheck
+        if: always()
+        run: Rscript -e 'renv::install("rcmdcheck")'
+        shell: bash
 
+      - name: Install suggested
+        if: always()
+        run: Rscript -e 'renv::install("testthat")'
+        shell: bash
+        
       - uses: r-lib/actions/check-r-package@v1
+        with:
+          error-on: '"error"'
 
       - name: Show testthat output
         if: always()

@@ -4,7 +4,7 @@
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd 
+#' @noRd
 #'
 #' @importFrom shiny NS tagList
 mod_gender_pay_gap_ui <- function(id, i18n) {
@@ -13,13 +13,13 @@ mod_gender_pay_gap_ui <- function(id, i18n) {
     br(),
     h4(i18n$t("Töötav elanikkond")),
     br(),
-    mod_metric_change_ui(
+    mod_desc_metric_change_ui(
       ns("pay_gap"),
       i18n$t("Sooline palgalõhe"),
       i18n$t("Täisajaga töötavate meeste ja naiste brutotunnipalkade lõhe.")
     ),
     br(),
-    mod_metric_change_ui(
+    mod_desc_metric_change_ui(
       ns("disp_ft"),
       i18n$t("Kättesaadava sissetuleku sooline lõhe"),
       i18n$t(
@@ -27,7 +27,7 @@ mod_gender_pay_gap_ui <- function(id, i18n) {
       )
     ),
     br(),
-    mod_metric_change_ui(
+    mod_desc_metric_change_ui(
       ns("disp"),
       i18n$t("Kättesaadava sissetuleku sooline lõhe"),
       i18n$t(
@@ -36,30 +36,41 @@ mod_gender_pay_gap_ui <- function(id, i18n) {
     )
   )
 }
-    
+
 #' gender_pay_gap Server Functions
 #'
-#' @noRd 
-mod_gender_pay_gap_server <- function(id, i18n, results){
-  moduleServer( id, function(input, output, session){
-    ns <- session$ns
+#' @noRd
+mod_gender_pay_gap_server <- function(input, output, session, i18n, results) {
+  ns <- session$ns
 
-    mod_metric_change_server(
-      "pay_gap",
-      reactive(results()$original$"gender pay gap"),
-      reactive(results()$computed$"new pay gap")
-    )
+  callModule(mod_desc_metric_change_server,
+    "pay_gap",
+    reactive(results()$original$"gender pay gap"),
+    reactive(results()$computed$"new pay gap"),
+    desc_tt = reactive(i18n()$t(
+      "Palgalõhe näitab, mitu protsenti on naiste brutotunnipalk meeste omast madalam."
+    )),
+    old_tt = reactive(i18n()$t("Tegelik väärtus")),
+    new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
+  )
 
-    mod_metric_change_server(
-      "disp_ft",
-      reactive(results()$original$"disp income gap workers"),
-      reactive(results()$computed$"new disp inc gap ft")
-    )
-    
-    mod_metric_change_server(
-      "disp",
-      reactive(results()$original$"disp income gap all"),
-      reactive(results()$computed$"new disp inc gap")
-    )
-  })
+  callModule(mod_desc_metric_change_server,
+    "disp_ft",
+    reactive(results()$original$"disp income gap workers"),
+    reactive(results()$computed$"new disp inc gap ft"),
+    desc_tt = reactive(i18n()$t(
+      "Palgalõhe näitab, mitu protsenti on naiste brutotunnipalk meeste omast madalam."
+    )),
+    old_tt = reactive(i18n()$t("Tegelik väärtus")),
+    new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
+  )
+
+  callModule(mod_desc_metric_change_server,
+    "disp",
+    reactive(results()$original$"disp income gap all"),
+    reactive(results()$computed$"new disp inc gap"),
+    desc_tt = reactive(i18n()$t("Arv näitab, mitu protsenti on naiste kuus kättesaadav sissetulek meeste omast madalam.")),
+    old_tt = reactive(i18n()$t("Tegelik väärtus")),
+    new_tt = reactive(i18n()$t("Ennustatatud uus väärtus"))
+  )
 }

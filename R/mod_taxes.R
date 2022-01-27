@@ -16,10 +16,12 @@ mod_taxes_ui <- function(id, i18n) {
     )),
     br(),
     fluidRow(
-      column(8,
-             strong(i18n$t(
-               "Laekuvad tööjõumaksud"
-             ))),
+      column(
+        8,
+        strong(i18n$t(
+          "Laekuvad tööjõumaksud"
+        ))
+      ),
       column(4, align = "center", mod_metric_ui(ns("tax_change")))
     ),
     br(),
@@ -28,10 +30,12 @@ mod_taxes_ui <- function(id, i18n) {
     )))),
     br(),
     fluidRow(
-      column(8,
-             strong(i18n$t(
-               "Väljamakstavad toetused"
-             ))),
+      column(
+        8,
+        strong(i18n$t(
+          "Väljamakstavad toetused"
+        ))
+      ),
       column(4, align = "center", mod_metric_ui(ns(
         "benefits_change"
       )))
@@ -46,10 +50,10 @@ mod_taxes_ui <- function(id, i18n) {
 #' taxes Server Functions
 #'
 #' @noRd
-mod_taxes_server <- function(id, i18n, results) {
-  moduleServer(id, function(input, output, session) {
+mod_taxes_server <-
+  function(input, output, session, i18n, results) {
     ns <- session$ns
-    
+
     taxes_table <- reactive({
       r <- results()
       i18n <- i18n()
@@ -62,14 +66,12 @@ mod_taxes_server <- function(id, i18n, results) {
         "Tegelik maksutulu" = c(
           format_money(r$original$"social tax paid"),
           format_money(r$original$"income tax paid"),
-          format_money(
-            r$original$"social tax paid"+r$original$"income tax paid"
-          )
+          format_money(r$original$"social tax paid" + r$original$"income tax paid")
         ),
         "Ennustatav summa" = c(
           format_money(r$computed$"new social tax"),
           format_money(r$computed$"new income tax"),
-          format_money(r$computed$"new social tax"+r$computed$"new income tax")
+          format_money(r$computed$"new social tax" + r$computed$"new income tax")
         ),
         "Muutus" = c(
           format_change(r$computed$"subsistence benefit change"),
@@ -86,7 +88,7 @@ mod_taxes_server <- function(id, i18n, results) {
         )
       dataframe
     })
-    
+
     benefits_table <- reactive({
       r <- results()
       i18n <- i18n()
@@ -99,14 +101,14 @@ mod_taxes_server <- function(id, i18n, results) {
         "Tegelik kulu" = c(
           format_money(r$original$"subsistence benefit received"),
           format_money(
-            r$original$"all benefits received"-r$original$"subsistence benefit received"
+            r$original$"all benefits received" - r$original$"subsistence benefit received"
           ),
           format_money(r$original$"all benefits received")
         ),
         "Ennustatav kulu" = c(
           format_money(r$computed$"new subsistence benefits"),
           format_money(
-            r$computed$"new all benefits"-r$computed$"new subsistence benefits"
+            r$computed$"new all benefits" - r$computed$"new subsistence benefits"
           ),
           format_money(r$computed$"new all benefits")
         ),
@@ -125,17 +127,22 @@ mod_taxes_server <- function(id, i18n, results) {
         )
       dataframe
     })
-    
-    mod_metric_server("tax_change",
-                      reactive(results()$computed$"total tax change"))
-    
-    mod_metric_server("benefits_change",
-                      reactive(results()$computed$"total benefits change"))
-    
+
+    callModule(
+      mod_metric_server,
+      "tax_change",
+      reactive(results()$computed$"total tax change")
+    )
+
+    callModule(
+      mod_metric_server,
+      "benefits_change",
+      reactive(results()$computed$"total benefits change")
+    )
+
     output$taxes <-
       renderTable(taxes_table(), width = "100%", striped = TRUE)
-    
+
     output$benefits <-
       renderTable(benefits_table(), width = "100%", striped = TRUE)
-  })
-}
+  }

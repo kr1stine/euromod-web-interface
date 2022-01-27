@@ -1,0 +1,14 @@
+name: euromod-web-interface-beta
+title: euromod-web-interface-beta
+username:
+account: oluwandabira
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5285078
+bundleId: 5340277
+url: https://oluwandabira.shinyapps.io/euromod-web-interface-beta/
+when: 1638892804.59135
+lastSyncTime: 1638892804.59138
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .github/workflows/pr-commands.yaml|.github/workflows/R-CMD-check.yaml|.RData|data-raw
