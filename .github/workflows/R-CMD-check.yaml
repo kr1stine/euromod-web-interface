@@ -24,6 +24,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
+          pak-version: stable
           extra-packages: rcmdcheck
 
       - uses: r-lib/actions/check-r-package@v1
