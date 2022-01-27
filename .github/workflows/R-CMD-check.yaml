@@ -38,7 +38,14 @@ jobs:
         run: Rscript -e 'renv::install("rcmdcheck")'
         shell: bash
 
+      - name: Install suggested
+        if: always()
+        run: Rscript -e 'renv::install("testthat")'
+        shell: bash
+        
       - uses: r-lib/actions/check-r-package@v1
+        with:
+          error-on: "error"
 
       - name: Show testthat output
         if: always()

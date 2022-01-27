@@ -11,9 +11,6 @@ Imports:
     shiny (== 1.4.0),
     shiny.i18n
 Suggests:
-    golem,
-    devtools,
-    usethis,
     testthat (>= 3.0.0)
 Encoding: UTF-8
 LazyData: true
