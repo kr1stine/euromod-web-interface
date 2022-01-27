@@ -36,17 +36,19 @@ mod_desc_metric_change_server <-
            new_tt = reactive(""),
            more_is_positive = FALSE) {
     ns <- session$ns
-    
+
     output$tooltip <- renderUI({
-      tt = desc_tt()
+      tt <- desc_tt()
       if (tt == "") {
         span()
       } else {
-        span("data-toggle" = "tooltip",
-             "title" = tt,
-             icon("question-circle", "far", "font-awesome"))
+        span(
+          "data-toggle" = "tooltip",
+          "title" = tt,
+          icon("question-circle", "far", "font-awesome")
+        )
       }
     })
-    
+
     callModule(mod_metric_change_server, "values", old_value, new_value, old_tt, new_tt)
   }

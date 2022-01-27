@@ -13,16 +13,16 @@ run_app <- function(onStart = NULL,
   translator <-
     shiny.i18n::Translator$new(translation_json_path = "inst/extdata/translation.json")
   translator$set_translation_language("ee")
-  
+
   shinyOptions(i18n = translator)
-  
+
   addResourcePath("rege", "inst/app/www")
-  
+
   shiny::shinyApp(
     ui = app_ui,
     server = app_server,
     onStart = onStart,
-    #options = options,
+    # options = options,
     enableBookmarking = enableBookmarking,
     uiPattern = uiPattern
   )

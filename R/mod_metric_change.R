@@ -10,10 +10,10 @@
 mod_metric_change_ui <- function(id) {
   ns <- NS(id)
   tagList(
-      mod_metric_ui(ns("old")),
-      uiOutput(ns("arrow")),
-      mod_metric_ui(ns("new"))
-    )
+    mod_metric_ui(ns("old")),
+    uiOutput(ns("arrow")),
+    mod_metric_ui(ns("new"))
+  )
 }
 
 #' metric_change Server Functions
@@ -29,23 +29,24 @@ mod_metric_change_server <-
            new_tt = reactive(""),
            more_is_positive = FALSE) {
     ns <- session$ns
-    
+
     output$arrow <- renderUI({
       nv <- new_value()
       ov <- old_value()
-      
-      color = if (nv > ov &&
-                  more_is_positive || nv < ov && !more_is_positive)
+
+      color <- if (nv > ov &&
+        more_is_positive || nv < ov && !more_is_positive) {
         "rgb(0,166,90)"
-      else if (nv == ov)
+      } else if (nv == ov) {
         "black"
-      else
+      } else {
         "red"
-      
+      }
+
       span(style = sprintf("color: %s", color), icon("arrow-down"))
     })
-    
+
     callModule(mod_metric_server, "old", old_value, old_tt)
-    
+
     callModule(mod_metric_server, "new", new_value, new_tt)
   }

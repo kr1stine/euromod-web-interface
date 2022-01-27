@@ -18,11 +18,13 @@ mod_metric_ui <- function(id) {
 mod_metric_server <-
   function(input, output, session, metric, tooltip = reactive("")) {
     ns <- session$ns
-    
+
     output$tooltiped <- renderUI({
-      span("data-toggle" = "tooltip",
-           "data-placement" = "top",
-           "title" = tooltip(),
-           sprintf("%.2f%%", metric()))
+      span(
+        "data-toggle" = "tooltip",
+        "data-placement" = "top",
+        "title" = tooltip(),
+        sprintf("%.2f%%", metric())
+      )
     })
   }

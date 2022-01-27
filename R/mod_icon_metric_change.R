@@ -13,6 +13,6 @@ mod_icon_metric_change_server <-
            old_value,
            new_value) {
     ns <- session$ns
-    
-   callModule(mod_metric_change_server, "values", old_value, new_value)
+
+    callModule(mod_metric_change_server, "values", old_value, new_value)
   }
