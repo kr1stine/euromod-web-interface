@@ -1,6 +1,6 @@
 # euromod-web-interface
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/oluwandabira/euromod-web-interface/workflows/R-CMD-check/badge.svg)](https://github.com/oluwandabira/euromod-web-interface/actions)
+[![R-CMD-check](https://github.com/kr1stine/euromod-web-interface/workflows/R-CMD-check/badge.svg)](https://github.com/kr1stine/euromod-web-interface/actions)
 <!-- badges: end -->
   
 Web interface to run EUROMOD simulations.
