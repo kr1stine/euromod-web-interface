@@ -22,6 +22,11 @@ jobs:
           use-public-rspm: true
           r-version: '4.0.5'
 
+      - name: Install libcurl
+        if: always()
+        run: apt install libcurl4-openssl-dev
+        shell: bash
+        
       # - uses: r-lib/actions/setup-r-dependencies@v1
       #   with:
       #     pak-version: stable
