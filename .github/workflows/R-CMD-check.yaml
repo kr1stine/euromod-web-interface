@@ -24,7 +24,7 @@ jobs:
 
       - name: Install libcurl
         if: always()
-        run: apt install libcurl4-openssl-dev
+        run: sudo apt install libcurl4-openssl-dev
         shell: bash
         
       # - uses: r-lib/actions/setup-r-dependencies@v1
