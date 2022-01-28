@@ -2,8 +2,6 @@
 #'
 #' @description A shiny Module.
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
-#'
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
@@ -14,7 +12,9 @@ mod_metric_ui <- function(id) {
 
 #' metric Server Functions
 #'
-#' @noRd
+#' @param id,input,output,session Internal parameters for {shiny}.
+#' @param metric reactive numeric to be formatted and displayed.
+#' @param tooltip reactive string to be displayed as a bootstrap tooltip.
 mod_metric_server <-
   function(input, output, session, metric, tooltip = reactive("")) {
     ns <- session$ns

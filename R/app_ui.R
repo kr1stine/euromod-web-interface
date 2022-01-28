@@ -26,6 +26,9 @@ app_ui <- function(request) {
   )
 }
 
+#' Header row containing site title and language switcher.
+#' @param i18n {shiny.i18n} translator
+#' @noRd
 header <- function(i18n) {
   div(
     class = "container-fluid",
@@ -45,7 +48,9 @@ header <- function(i18n) {
   )
 }
 
-
+#' Banner row containing page graphics and title.
+#' @param i18n translator from shiny.i18n
+#' @noRd
 banner <- function(i18n) {
   div(
     id = "banner",
