@@ -13,7 +13,7 @@ uses pre-computed data as its back-end.
 This is a [shiny](https://shiny.rstudio.com/) 1.4.0 application with various
 components (such as the the input side panel and the results tabs) of the
 application divided into shiny modules. The project is structured in this
-way (as an R package) to help ease development and also because a contributor was
+way (as an R package named `rege`) to help ease development and also because a contributor was
 following [engineering-shiny](https://engineering-shiny.org/) at the time.
 
 The code-base includes a [ComputedProvider](R/ComputedProvider.R) as a back-end of
@@ -21,6 +21,9 @@ sorts to serve as the interface between the main application and the pre-compute
 data that it uses. This [R6](https://r6.r-lib.org/) class is structured and used
 in a way that should make it easy to replace with another similar class that interfaces
 directly with EUROMOD.
+
+The code-base also uses a translator from [shiny.i18n](https://github.com/Appsilon/shiny.i18n)
+translating all displayed text with the [translation file](inst/extdata/translation.json).
 
 ### Tests
 Only the `ComputedProvider` has unit tests with the [testthat](https://testthat.r-lib.org/)
@@ -39,7 +42,7 @@ not work well with any OS other than Windows because the raw csv data files were
 created on a Windows machine with some Windows specific encoding.
 
 The project was bootstrapped with [golem](https://github.com/ThinkR-open/golem)
-but all dependencies on golem had to be removed because , as of the time the project was in development, the golem package is quite large
+but all dependencies on golem had to be removed because (as of the time the project was in development) the golem package is quite large
 and imported a bunch of other packages that were not necessary for execution. The
 [dev scripts](dev/) still contains references to golem and [usethis](https://usethis.r-lib.org/)
 as they may be re-introduced as soft dependencies in the future.
@@ -48,4 +51,15 @@ as they may be re-introduced as soft dependencies in the future.
 The project uses [renv](https://rstudio.github.io/renv/) so all relevant packages
 can be restored from the lock file. The project's direct dependencies are also
 listed in the [DESCRIPTION](DESCRIPTION).
+
+Locally, the project can be opened using RStudio and the dependencies restored with
+`rege::restore()`, then the project built using Rstudio's build command (Build > Install and Restart)
+. With the project built and installed, the application can be run with `rege::run_app`.
+
+The [latest rsconnect deployment file](rsconnect/shinyapps.io/oluwandabira/ewi-beta.dcf)
+is the <https://www.shinyapps.io/> deployment file for the [development beta build](https://oluwandabira.shinyapps.io/ewi-beta/).
+
+## Screenshots
+![Screenshot in Estonia](screenshots/ss-eesti.png)
+![Screenshot in English](screenshots/ss-eng.png)
 
