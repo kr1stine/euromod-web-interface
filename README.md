@@ -56,6 +56,9 @@ Locally, the project can be opened using RStudio and the dependencies restored w
 `rege::restore()`, then the project built using Rstudio's build command (Build > Install and Restart)
 . With the project built and installed, the application can be run with `rege::run_app`.
 
+The script [app.R](app.R) can also be used to run the application (after
+dependencies are installed).
+
 The [latest rsconnect deployment file](rsconnect/shinyapps.io/oluwandabira/ewi-beta.dcf)
 is the <https://www.shinyapps.io/> deployment file for the [development beta build](https://oluwandabira.shinyapps.io/ewi-beta/).
 
