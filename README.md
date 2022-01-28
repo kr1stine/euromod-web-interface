@@ -10,16 +10,16 @@ uses pre-computed data as its back-end.
 
 ## Code
 
-This is a [shiny](https://shiny.rstudio.com/)v1.4.0 application with various
+This is a [shiny](https://shiny.rstudio.com/) 1.4.0 application with various
 components (such as the the input side panel and the results tabs) of the
-application are divided into shiny modules. The project is structured in this
+application divided into shiny modules. The project is structured in this
 way (as an R package) to help ease development and also because a contributor was
 following [engineering-shiny](https://engineering-shiny.org/) at the time.
 
 The code-base includes a [ComputedProvider](R/ComputedProvider.R) as a back-end of
 sorts to serve as the interface between the main application and the pre-computed
 data that it uses. This [R6](https://r6.r-lib.org/) class is structured and used
-in a way that should may it easy to replace with another similar class that interfaces
+in a way that should make it easy to replace with another similar class that interfaces
 directly with EUROMOD.
 
 ### Tests
@@ -45,6 +45,7 @@ and imported a bunch of other packages that were not necessary for execution. Th
 as they may be re-introduced as soft dependencies in the future.
 
 ## Setup and Deployment
-The project uses [renv](https://rstudio.github.io/renv/) and all relevant packages
+The project uses [renv](https://rstudio.github.io/renv/) so all relevant packages
 can be restored from the lock file. The project's direct dependencies are also
 listed in the [DESCRIPTION](DESCRIPTION).
+
