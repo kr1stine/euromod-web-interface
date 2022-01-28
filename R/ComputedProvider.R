@@ -1,10 +1,13 @@
 
-#' Provider for precomputed results
+#' Provider back-end for pre-computed results.
 #' @export
 #' @importFrom dplyr %>% filter
+#' @noRd
 ComputedProvider <- R6::R6Class(
   "ComputedProvider",
   public = list(
+    #' Retrieve the input range.
+    #' @return dataframe with schema (year, min, max).
     get_input_limits = function() {
       values <- unique(income_poverty_taxes_benefits$year) %>%
         purrr::map(~ dplyr::filter(income_poverty_taxes_benefits, year == .x)) %>%
@@ -19,6 +22,10 @@ ComputedProvider <- R6::R6Class(
 
       return(df)
     },
+    #' Retrieve the results for the selected year/minimum wage combo from the
+    #' pre-computed data.
+    #' @param year numeric, selected year.
+    #' @param min_wage numeric, selected minimum wage.
     compute = function(year, min_wage) {
       computed <-
         dplyr::filter(

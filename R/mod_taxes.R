@@ -2,7 +2,7 @@
 #'
 #' @description A shiny Module.
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
+#' 
 #'
 #' @noRd
 #'
@@ -48,7 +48,7 @@ mod_taxes_ui <- function(id, i18n) {
 }
 
 #' taxes Server Functions
-#'
+#' @param id,input,output,session Internal parameters for {shiny}.
 #' @noRd
 mod_taxes_server <-
   function(input, output, session, i18n, results) {
