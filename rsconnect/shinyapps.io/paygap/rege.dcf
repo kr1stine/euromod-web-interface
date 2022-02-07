@@ -1,0 +1,13 @@
+name: rege
+title: rege
+username:
+account: paygap
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5596551
+bundleId: 5552065
+url: https://paygap.shinyapps.io/rege/
+when: 1644238677.92932
+lastSyncTime: 1644238677.92938
+asMultiple: FALSE
+asStatic: FALSE

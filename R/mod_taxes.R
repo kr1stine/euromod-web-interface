@@ -72,19 +72,19 @@ mod_taxes_server <-
           format_money(r$computed$"new social tax"),
           format_money(r$computed$"new income tax"),
           format_money(r$computed$"new social tax" + r$computed$"new income tax")
-        ),
-        "Muutus" = c(
-          format_change(r$computed$"subsistence benefit change"),
-          format_change(r$computed$"other benefits change"),
-          format_change(r$computed$"total benefits change")
-        )
+        )#,
+        # "Muutus" = c(
+        #   format_change(r$computed$"subsistence benefit change"),
+        #   format_change(r$computed$"other benefits change"),
+        #   format_change(r$computed$"total benefits change")
+        # )
       )
       names(dataframe) <-
         c(
           i18n$t("Maks"),
           sprintf("%s (€)", i18n$t("Tegelik maksutulu")),
-          sprintf("%s (€)", i18n$t("Ennustatav maksutulu")),
-          sprintf("%s (%%)", i18n$t("Muutus"))
+          sprintf("%s (€)", i18n$t("Ennustatav maksutulu"))#,
+          #sprintf("%s (%%)", i18n$t("Muutus"))
         )
       dataframe
     })
@@ -111,34 +111,34 @@ mod_taxes_server <-
             r$computed$"new all benefits" - r$computed$"new subsistence benefits"
           ),
           format_money(r$computed$"new all benefits")
-        ),
-        "Muutus" = c(
-          format_change(r$computed$"subsistence benefit change"),
-          format_change(r$computed$"other benefits change"),
-          format_change(r$computed$"total benefits change")
-        )
+        )#,
+        # "Muutus" = c(
+        #   format_change(r$computed$"subsistence benefit change"),
+        #   format_change(r$computed$"other benefits change"),
+        #   format_change(r$computed$"total benefits change")
+        # )
       )
       names(dataframe) <-
         c(
           i18n$t("Toetus"),
           sprintf("%s (€)", i18n$t("Tegelik kulu")),
-          sprintf("%s (€)", i18n$t("Ennustatav kulu")),
-          sprintf("%s (%%)", i18n$t("Muutus"))
+          sprintf("%s (€)", i18n$t("Ennustatav kulu"))#,
+          #sprintf("%s (%%)", i18n$t("Muutus"))
         )
       dataframe
     })
-
-    callModule(
-      mod_metric_server,
-      "tax_change",
-      reactive(results()$computed$"total tax change")
-    )
-
-    callModule(
-      mod_metric_server,
-      "benefits_change",
-      reactive(results()$computed$"total benefits change")
-    )
+# 
+#     callModule(
+#       mod_metric_server,
+#       "tax_change",
+#       reactive(results()$computed$"total tax change")
+#     )
+# 
+#     callModule(
+#       mod_metric_server,
+#       "benefits_change",
+#       reactive(results()$computed$"total benefits change")
+#     )
 
     output$taxes <-
       renderTable(taxes_table(), width = "100%", striped = TRUE)

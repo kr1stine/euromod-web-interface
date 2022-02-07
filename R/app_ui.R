@@ -9,7 +9,7 @@ app_ui <- function(request) {
   tagList(
     tags$head(
       tags$title("Miinimumpalga tõusu mõju palgalõhele"),
-      tags$link(type = "image/png", rel = "icon", href = "rege/ES_favicon.png"),
+      #tags$link(type = "image/png", rel = "icon", href = "rege/ES_favicon.png"),
       shiny.i18n::usei18n(i18n)
     ),
     # ,
@@ -35,11 +35,11 @@ header <- function(i18n) {
     id = "header",
     div(
       class = "row",
-      column(4, i18n$t("Statistikaamet")),
+      #column(4, i18n$t("Statistikaamet")),
       column(
-        4,
+        12,
         align = "right",
-        offset = 4,
+        #offset = 4,
         actionLink("lang-et", "EST", class = "header-lang"),
         span("|", class = "header-lang"),
         actionLink("lang-en", "ENG", class = "header-lang")
@@ -59,9 +59,9 @@ banner <- function(i18n) {
         4,
         tags$a(
           img(
-            src = "rege/ES_Logo.svg",
-            height = 80,
-            width = 200
+            src = "rege/REGE_logo_final.png",
+            height = 100,
+            width = 133
           )
         )
       ),
@@ -74,9 +74,9 @@ banner <- function(i18n) {
       column(4,
         tags$a(
           img(
-            src = "rege/rege.jpg",
-            height = 60,
-            width = 150
+            src = "rege/el_regionaalarengu_fond_horisontaalne.jpg",
+            height = 100,
+            width = 160
           )
         ),
         align = "center"
